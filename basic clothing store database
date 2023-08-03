@@ -1,5 +1,5 @@
 --Created table called clothing store with 5 variables 
-CREATE TABLE clothingstore(id INTEGER PRIMARY KEY,clothingitem TEXT,menorwomens TEXT,season TEXT,price INTEGER);
+CREATE TABLE clothingstore(id INTEGER PRIMARY KEY,clothingitem TEXT,menorwomens TEXT,season TEXT,price REAL);
 
 -- created 15 lines of code of different items sold at the store with season,men or womens item and price.
 INSERT INTO clothingstore VALUES (1,"white tee shirt","mens","summer",5.99);
@@ -18,7 +18,7 @@ INSERT INTO clothingstore VALUES (13,"aquamarine tee shirt","mens","summer",17.9
 INSERT INTO clothingstore VALUES (14,"limeyellow tee shirt","mens","summer",18.99);
 INSERT INTO clothingstore VALUES (15,"rainbow tee shirt","mens","summer",19.99);
 
---This line selects the clothing items and the price of each item orders them from most to least exxpensive. 
+--This line selects the clothing items and the price of each item orders them from most to least expensive. 
 SELECT clothingitem,price FROM clothingstore  ORDER BY price DESC;
 
 -- this line displays the most expensive item at the store 
