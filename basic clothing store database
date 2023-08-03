@@ -1,0 +1,25 @@
+--Created table called clothing store with 5 variables 
+CREATE TABLE clothingstore(id INTEGER PRIMARY KEY,clothingitem TEXT,menorwomens TEXT,season TEXT,price INTEGER);
+
+-- created 15 lines of code of different items sold at the store with season,men or womens item and price.
+INSERT INTO clothingstore VALUES (1,"white tee shirt","mens","summer",5.99);
+INSERT INTO clothingstore VALUES (2,"black leggings","womens","summer",6.99);
+INSERT INTO clothingstore VALUES (3,"green crop top","womens","summer",5.99);
+INSERT INTO clothingstore VALUES (4,"yellow tee shirt","mens","summer",4.99);
+INSERT INTO clothingstore VALUES (5,"white converse sneakers","womens","summer",19.99);
+INSERT INTO clothingstore VALUES (6,"purple tee shirt","mens","summer",5.99);
+INSERT INTO clothingstore VALUES (7,"red tee shirt","mens","summer",11.99);
+INSERT INTO clothingstore VALUES (8,"magenta tee shirt","mens","summer",12.99);
+INSERT INTO clothingstore VALUES (9,"aqua tee shirt","mens","summer",13.99);
+INSERT INTO clothingstore VALUES (10,"limegreen tee shirt","mens","summer",14.99);
+INSERT INTO clothingstore VALUES (11,"fuschia tee shirt","mens","summer",15.99);
+INSERT INTO clothingstore VALUES (12,"teal tee shirt","mens","summer",16.99);
+INSERT INTO clothingstore VALUES (13,"aquamarine tee shirt","mens","summer",17.99);
+INSERT INTO clothingstore VALUES (14,"limeyellow tee shirt","mens","summer",18.99);
+INSERT INTO clothingstore VALUES (15,"rainbow tee shirt","mens","summer",19.99);
+
+--This line selects the clothing items and the price of each item orders them from most to least exxpensive. 
+SELECT clothingitem,price FROM clothingstore  ORDER BY price DESC;
+
+-- this line displays the most expensive item at the store 
+SELECT MAX(price) FROM clothingstore;
