@@ -1,0 +1,37 @@
+-- G7 World Currency Comparison
+CREATE TABLE World_Currency_Comparison_G7(
+id INTEGER PRIMARY KEY ,
+Country TEXT,
+Country_Currency TEXT,
+Currency_In_Dollars REAL,
+Country_GDP NUMERIC);
+/* Create values for the group of seven economies */
+INSERT INTO World_Currency_Comparison_G7 VALUES(1,"USA","Dollar",1.00,25462700000000);
+INSERT INTO World_Currency_Comparison_G7 VALUES(2,"Canada","Canadian Dollar",.75,2139840000000);
+INSERT INTO World_Currency_Comparison_G7 VALUES(3,"United Kingdom","Pound Sterling",1.28,3070667000000);
+INSERT INTO World_Currency_Comparison_G7 VALUES(4,"France","Euro",1.10,2782905000000);
+INSERT INTO World_Currency_Comparison_G7 VALUES(5,"Italy","Euro",1.10,2010431000000);
+INSERT INTO World_Currency_Comparison_G7 VALUES(6,"Germany","Euro",1.10,4072191000000);
+INSERT INTO World_Currency_Comparison_G7 VALUES(7,"Japan","Yen",.0070,4231141000000);
+
+--Avg,Max,Min value of GDP
+SELECT AVG(Country_GDP) FROM World_Currency_Comparison_G7;
+SELECT MAX(Country_GDP) FROM World_Currency_Comparison_G7;
+SELECT MIN(Country_GDP) FROM World_Currency_Comparison_G7;
+
+-- Having clause  
+SELECT Country,Country_GDP FROM World_Currency_Comparison_G7 GROUP BY Country_GDP HAVING Country_GDP > 4000000000000;
+
+-- AND Clause
+SELECT Country,Currency_In_Dollars FROM  World_Currency_Comparison_G7 WHERE Currency_In_Dollars > 1 AND Country_GDP > 2000000000000;
+
+--CASE Clause
+SELECT COUNT(*),
+CASE
+WHEN Currency_In_Dollars  = 1.1 THEN "Euro"
+WHEN Currency_In_Dollars > 1.1 THEN "Pound Sterling"
+WHEN Currency_In_Dollars = 1 THEN "Dollar"
+WHEN Currency_In_Dollars < 1 AND Currency_In_Dollars  > .0070 THEN "Canadian Dollar"
+ELSE "Yen"
+END AS "G7 Currencies" FROM World_Currency_Comparison_G7
+GROUP BY "G7 Currencies";
