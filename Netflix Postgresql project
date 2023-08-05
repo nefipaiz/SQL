@@ -1,0 +1,28 @@
+/*Netflix postgresql project*/
+/*"This project utilized data from the Netflix database stored at http://sqlfiddle.com/#!17/7dae0/16/0"*/
+SELECT people.show_id,
+people.director,
+titles.title,
+titles.type
+FROM "netflix_people" people LEFT JOIN "netflix_titles_info" titles ON 
+people.show_id=titles.show_id
+
+/* count of how many movies in the database*/
+SELECT count(*) FROM "netflix_titles_info" WHERE type='Movie';
+
+/* most recently added batch of tvshows/movies added to database*/
+SELECT max(date(date_added)) FROM "netflix_titles_info";
+
+/* list of all movies and tv shows in alphabetical order*/
+SELECT title FROM "netflix_titles_info" ORDER BY title ASC;
+
+/* Find the director for the movie the Starling*/
+SELECT director FROM "netflix_titles_info" titles LEFT JOIN
+"netflix_people" people ON titles.show_id=people.show_id WHERE titles.title=
+'The Starling';
+
+/* Finding the oldest movie in the database and what year it was made*/
+SELECT title,release_year FROM "netflix_titles_info"
+titles WHERE type = 'Movie'
+ORDER BY release_year ASC 
+LIMIT 1;
