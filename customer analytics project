@@ -9,17 +9,14 @@ SELECT COUNT(orderid) FROM BIT_DB.JanSales WHERE Product = "iPhone"
 AND length(orderid) = 6
 AND orderid <> "Order ID"; 
 --3. Select the customer account numbers for all the orders that were placed in February
-SELECT * FROM BIT_DB.FebSales LIMIT 20;
 SELECT DISTINCT acctnum FROM BIT_DB.customers cust INNER JOIN BIT_DB.FebSales Feb ON
 cust.order_id = Feb.orderid 
 WHERE length(orderid) = 6
 AND orderid <> "Order ID";
 --4. Which product was the cheapest one sold in January, and what was the price?
-SELECT * FROM JanSales LIMIT 20  ;
 SELECT DISTINCT Product,price FROM BIT_DB.JanSales 
 ORDER BY price ASC LIMIT 1; 
 --5. What is the total revenue for each product sold in January? 
-SELECT*FROM JanSales LIMIT 20;
 SELECT Sum(Quantity)*price,Product AS Revenue FROM BIT_DB.JanSales 
 GROUP BY Product;
 --6. Which products were sold in February at 548 Lincoln St, Seattle, WA 98101, how many of each were sold, and what was the total revenue?
@@ -35,6 +32,10 @@ ON FEB.orderid=cust.order_id
 WHERE Feb.Quantity>2
 AND length(orderid) = 6 
 AND orderid <> 'Order ID';
+--List all the products sold in Los Angeles in February, and include how many of each were sold.
+SELECT Product,Sum(Quantity) FROM 
+BIT_DB.FebSales WHERE location like "%Los Angeles%" 
+GROUP BY Product;
 
 
 
