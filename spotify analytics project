@@ -32,11 +32,26 @@ select * from BIT_DB.Spotifydata;
 select distinct artist_name,popularity  from BIT_DB.Spotifydata
 group by popularity 
 order by popularity desc limit 10;
+
 -- which is the average loudness for top 10 popular songs (list each track)?
 select track_name,popularity,avg(loudness) from BIT_DB.Spotifydata
 group by loudness
-order by popularity desc limit 10;
+
 -- Which artist had the least popular song 
 select artist_name,track_name,popularity from BIT_DB.Spotifydata
 group by artist_name 
 order by popularity asc limit 1;
+
+--Calculate the average popularity for the artists in the Spotify data table.
+ --Then, for every artist with an average popularity of 90 or above, show their name, their average popularity, and label them as a “Top Star”.
+ with average_popularity_cte as (
+  select artist_name,avg(popularity) as average_popularity 
+  from Spotifydata 
+  group by artist_name
+)
+select artist_name,average_popularity,'Top star' as tag
+from average_popularity_cte 
+where average_popularity >= 90
+order by average_popularity desc;
+
+
